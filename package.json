@@ -1,0 +1,17 @@
+{
+  "name": "IT-Software-Type",
+  "version": "0.0.0",
+  "description": "Create new IT Software Type ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.1",
+    "body-parser": "^1.13.2",
+    "pg": "^4.4.0"
+  },
+  "engines": {
+    "node": "4.0.0"
+  }
+}

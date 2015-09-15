@@ -1,0 +1,10 @@
+{
+  "name": "IT Software Type",
+  "description": "Create new IT Software Type ",
+  "env": {
+    "PGSSLMODE": {
+      "description": "Require SSL for Postgres",
+      "value": "require"
+    }
+  }
+}

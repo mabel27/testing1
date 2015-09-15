@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New IT Software Type</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="js/javascript.js"></script>
+    <style>
+        body {
+            padding-top: 60px;
+        }
+    </style>
+    <script>
+        $(function() {
+            $("#newSoftwareLicense").submit(function(event) {
+                event.preventDefault();
+
+                var errorMessage = $("#errorMessage");
+                var error = $("#error");
+                error.hide();
+
+                $("#message").hide();
+
+                var softwareName = $("#softwareName").val();
+                var date = $("#date").val();
+                var subscription = $("#subscription").val();
+                var number = $("#number").val();
+
+                if (softwareName.length == 0 || number.length == 0 ) {
+                    errorMessage.text("This fields are required.");
+                    error.show();
+                }
+                else {
+                    $.ajax({
+                        url: event.target.action,
+                        method: event.target.method,
+                        data: JSON.stringify({
+                            softwareName: softwareName,
+                            date: date,
+                            subscription: subscription,
+                            number: number
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(data) {
+                            $("#softwareName").val("");
+                            $("#date").val("");
+                            $("#subscription").val("");
+                            $("#number").val("");
+                            $("#messageMessage").text("IT Software License Created");
+                            $("#message").show();
+                        },
+                        error: function(err) {
+                            errorMessage.text(err.responseJSON.error);
+                            error.show();
+                        }
+                    })
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">New IT Software Type</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="newSoftwareLicense" action="/new" method="post" style="width: 600px">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Create a new IT Software Type</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="SoftwareName">Software Name</label>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <input type="text" class="form-control" id="softwareName" placeholder="Software Name" required >
+                       
+                    </div>
+                    
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">Purchased Date</label>
+                        <div class="input-group input-append date" id="datePicker">
+                            <input id="date" type="text" class="form-control" name="date" />
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <label for="subscription">Subscription</label>
+                        <span class="glyphicon glyphicon-time"></span>
+                        <select class="form-control" id="subscription">
+                        <option value="0">None</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Yearly</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="number"># of licenses purchased</label>
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <input type="number" class="form-control" id="number" placeholder="Number of licenses" required>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div id="message" class="alert alert-info" role="alert" style="display: none;">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <span id="messageMessage"></span>
+                    </div>
+                    <div id="error" class="alert alert-danger" role="alert" style="display: none;">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span id="errorMessage"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>-
