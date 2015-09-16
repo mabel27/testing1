@@ -1,0 +1,133 @@
+<html>
+        <head>
+            <style type="text/css">
+             .text .bottom {
+                 padding-left:12px;
+                 margin-bottom: 50px;
+                 
+                 
+             }
+                
+                #textIntro {
+                
+                text-align: center;
+                font-size: 16px;
+                
+                }
+                
+                #amount {
+                
+                    font-size: 16px;
+                
+                }
+                
+             
+             table, tr, th {
+                    font-size:0.95em;
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+              th {
+                  font-size: 11px;
+                  font-face: arial;
+                  background: #CCCCCC;
+                  border-width: 1;  
+                  text-align: center;
+                 }
+              td  {
+                  font-size: 11px;
+                  font-face: verdana;
+                 }
+
+              table {
+                  border: solid #CCCCCC;
+                  border-width: 1;
+                 }
+              tr {
+                  border: 1px solid black;
+                  border-width: 1;
+                  }
+              .right {
+                    text-align: right;
+                    padding-left: 20px;
+                }
+                
+                .budget {
+                    padding: 6px 6px 6px 6px;
+                    
+                }
+                body {
+                    max-width:750px;
+                }
+                .header {
+                    background-color:black;
+                    width:100%;
+                    height:60px;
+                }
+            </style>
+        </head>
+        
+        <body>
+        <font face="arial" size="2">
+            <div class="header">
+                <p><img alt="" src="http://www.sdimarketing.com/SDI/SDIMKTG_Logo.jpg" /></p>
+            </div>
+           
+            <p id="textIntro">Please review the Expense Report below: </p>
+            <p class="text ">
+           <strong >Expense Report Name: </strong> <a href="https://sdi.my.salesforce.com/{!relatedTo.Id}">{!relatedTo.Name}</a><br/>  <br/>
+            <strong >Resource/Vendor: </strong>{!relatedTo.pse__Resource__r.FirstName}&nbsp;{!relatedTo.pse__Resource__r.LastName}<br /><br/> 
+            <strong >Project Name: </strong>{!relatedTo.pse__Project__r.Name} <br /><br/> 
+            <strong>Project Manager: </strong>{!relatedTo.Project_Manager__c} <br /><br/> 
+            <strong>Description: </strong>{!relatedTo.pse__Description__c} <br /><br/> 
+            <strong>Total Reimbursement Amount: </strong><p><apex:outputText value="{0, number, ###,###,###,###.00}"> <apex:param value="{!relatedTo.pse__Total_Reimbursement_Amount__c}"/>
+                        </apex:outputText></p><br />
+            </p>
+            <p class="text">   
+                <table id="countit">
+                    <tr>
+                        <th class="budget">Expense Number</th>
+                        <th class="budget">Expense Date</th>
+                        <th class="budget">Description</th>
+                        <th class="budget">Type</th>
+                        <th class="right">Amount&nbsp;({!relatedTo.CurrencyIsoCode})</th>
+                     </tr>
+                <apex:repeat var="rx" value="{!relatedTo.pse__Expense_Lines__r}">
+                <tr>
+                    <td class="budget">{!rx.Name}</td>
+                    <td class="budget"><apex:outputText value="{0, date, MMMM d','  yyyy}">
+                        <apex:param value="{!rx.pse__Expense_Date__c}" /> 
+                        </apex:outputText></td>
+                    <td class="budget">{!rx.pse__Description__c}</td>
+                    <td class="budget">{!rx.pse__Type__c}</td>
+                    <td class="right">
+                        <apex:outputText value="{0, number, ###,###,###,###.00}"> <apex:param value="{!rx.pse__Amount__c}"/>
+                        </apex:outputText>
+                    </td>    
+                </tr>
+                </apex:repeat>
+                <tfoot>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="budget"><strong>TOTAL: </strong></td>
+                      <td class="right">
+                          <strong>
+                              <apex:outputText value="{!relatedTo.CurrencyIsoCode} "/>
+                              <apex:outputText value="{0, number, ###,###,###,###.00}"> <apex:param value="{!relatedTo.pse__Total_Reimbursement_Amount__c}"/>
+                              </apex:outputText>
+                          </strong>
+                      </td>
+                    </tr>
+               </tfoot>
+         </table>
+         </p>
+         <p />
+         <p class="text">To approve or reject this item, reply to this email with the word APPROVE, APPROVED, YES, REJECT, REJECTED, or NO in the first line of the email message, or login to Salesforce.<br/><br/> 
+If replying via email you can also add comments on the second line. The comments will be stored with the approval request in Salesforce.<br/><br/>
+<strong>Note: </strong>For salesforce.com to process your response the word APPROVE, APPROVED, YES, REJECT, REJECTED, or NO must be in 
+the very first line of the reply email. Also, any comment must be in the second line. </p>
+        <p class="bottom">Best regards,<br/>SDI Marketing</p>
+        </font>
+    </body>
+    </html>
