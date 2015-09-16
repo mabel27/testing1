@@ -11,8 +11,10 @@ app.use(bodyParser.json());
 
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        
+    
         conn.query(
-            'UPDATE salesforce.IT_Software_Type SET number = $1,  WHERE LOWER(softwareName) = LOWER($2) ',
+            'UPDATE salesforce.IT_Software_Type__c SET number = $1,  WHERE LOWER(softwareName) = LOWER($2) ',
             [req.body.softwareName, req.body.number],
             function(err, result) {
                 done();
@@ -26,6 +28,13 @@ app.post('/update', function(req, res) {
         );
     });
 });
+
+
+Expense_Lines__r
+
+
+
+
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
