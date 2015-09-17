@@ -12,7 +12,12 @@ app.use(bodyParser.json());
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
-     conn.query(
+        if(err){
+            
+            console.log('Sorry, there is no mongo db server running.');
+    } else {
+        
+            conn.query(
             'UPDATE salesforce.IT_Software_Type SET number = $1,  WHERE LOWER(softwareName) = LOWER($2)',
             [req.body.softwareName, req.body.number],
             function(err, result) {
@@ -25,8 +30,11 @@ app.post('/update', function(req, res) {
                 }
             }
         );
-    
         
+        
+        };
+        
+    
     });
 });
 
