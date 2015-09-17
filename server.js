@@ -40,6 +40,7 @@ app.post('/new', function(req, res) {
             function(err, result) {
                 done();
                 if (err != null || result.rowCount == 0) {
+                     console.error(err);
                     res.status(400).json({error: 'Error inserting'});
                 }
                 else {
