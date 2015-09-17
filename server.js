@@ -11,6 +11,10 @@ app.use(bodyParser.json());
 
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        if (err) {
+    console.error(err);
+    process.exit(1);
+  }
             conn.query(
             'UPDATE salesforce.IT_Software_Type SET number = $1,  WHERE LOWER(softwareName) = LOWER($2)',
             [req.body.softwareName, req.body.number],
