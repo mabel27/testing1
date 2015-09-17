@@ -18,7 +18,7 @@
     </style>
     <script>
         $(function() {
-            $("#changeName").submit(function(event) {
+            $("#create").submit(function(event) {
                 event.preventDefault();
 
                 var errorMessage = $("#errorMessage");
@@ -71,7 +71,7 @@
     </nav>
 
     <div class="container">
-        <form id="changeName" action="/new" method="POST" style="width: 600px">
+        <form id="create" action="/new" method="POST" style="width: 600px">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Create a new IT Software Type</h3>
