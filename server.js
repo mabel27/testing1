@@ -32,6 +32,31 @@ app.post('/update', function(req, res) {
     });
 });
 
+  var insert = 'INSERT INTO salesforce.tweet__c(name, contact__c, campaign__c, text__c) '+
+                                 'VALUES($1, $2, $3, $4)';
+                    client.query(insert, [tweet.id_str, contacts[tweet.user.screen_name].sfid, campaign.sfid, tweet.text],
+
+
+app.post('/new', function(req, res) {
+    pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        
+        var insert = 'INSERT INTO salesforce.Contact(name)'+'VALUES($1)';
+            conn.query(insert,[req.body.name],
+            function(err, result) {
+                done();
+                if (err != null || result.rowCount == 0) {
+                    res.status(400).json({error: 'Error inserting'});
+                }
+                else {
+                    res.json(result);
+                }
+            }
+            
+        );
+            
+    });
+});
+
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
