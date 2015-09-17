@@ -1,6 +1,7 @@
 {
   "name": "IT Software Type",
   "description": "Create new IT Software Type ",
+   "repository": "https://github.com/mabel27/testing1",
   "env": {
     "PGSSLMODE": {
       "description": "Require SSL for Postgres",
@@ -8,3 +9,4 @@
     }
   }
 }
+
