@@ -32,7 +32,6 @@ app.post('/update', function(req, res) {
     });
 });
 
-
 app.post('/new', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
