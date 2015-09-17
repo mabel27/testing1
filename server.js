@@ -11,26 +11,12 @@ app.use(bodyParser.json());
 
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
-        if (err) {
-    console.error(err);
-    process.exit(1);
-  }
-            conn.query(
-            'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)',
-        
-            function(err, result) {
-                done();
-                if (err != null || result.rowCount == 0) {
-                    res.status(400).json({error: 'The specified contact was not found.'});
-                }
-                else {
-                    res.json(result);
-                }
-            }
-        );
+
+        console.log(err);
             
     });
 });
+
 
 app.post('/new', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
