@@ -32,10 +32,6 @@ app.post('/update', function(req, res) {
     });
 });
 
-  var insert = 'INSERT INTO salesforce.tweet__c(name, contact__c, campaign__c, text__c) '+
-                                 'VALUES($1, $2, $3, $4)';
-                    client.query(insert, [tweet.id_str, contacts[tweet.user.screen_name].sfid, campaign.sfid, tweet.text],
-
 
 app.post('/new', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
