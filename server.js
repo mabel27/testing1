@@ -35,7 +35,7 @@ app.post('/update', function(req, res) {
 app.post('/new', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
-        var insert = 'INSERT INTO salesforce.Contact(Name,LastName)'+'VALUES($1,$2)';
+        var insert = 'INSERT INTO salesforce.Contact(Name,LastName)'+'VALUES($1, $2)';
             conn.query(insert,[req.body.name,req.body.lastName],
             function(err, result) {
                 done();
