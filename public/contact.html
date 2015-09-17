@@ -27,7 +27,7 @@
 
                 $("#message").hide();
 
-                var name = $("#name").val();
+                var lastName = $("#lastName").val();
         
               
                 if (name.length == 0  ) {
@@ -39,13 +39,13 @@
                         url: event.target.action,
                         method: event.target.method,
                         data: JSON.stringify({
-                            name: name,
+                            lastName: lastName,
                     
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                            $("#name").val("");
+                            $("#lastName").val("");
                     
                           
                            
@@ -78,9 +78,9 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="SoftwareName"> Name</label>
+                        <label for="SoftwareName"> Last Name</label>
                         <span class="glyphicon glyphicon-pencil"></span>
-                        <input type="text" class="form-control" id="name" placeholder="Name" required >
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" required >
                        
                     </div>
                     
