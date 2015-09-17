@@ -11,6 +11,20 @@ app.use(bodyParser.json());
 
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        
+      conn.query(
+            'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)',
+        
+            function(err, result) {
+                done();
+                if (err != null || result.rowCount == 0) {
+                    res.status(400).json({error: 'The specified contact was not found.'});
+                }
+                else {
+                    res.json(result);
+                }
+            }
+        );
 
     if(err) 
         
