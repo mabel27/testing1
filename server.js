@@ -16,7 +16,7 @@ app.post('/update', function(req, res) {
         
       conn.query(
             'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)',
-        [req.body.number__c,req.body.Name,req.body.date__c, req.body.subscription__c],
+        [req.body.IT_Software_Type__c.number__c,req.body.Name,req.body.date__c, req.body.subscription__c],
         
             function(err, result) {
                 
