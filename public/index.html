@@ -27,7 +27,7 @@
 
                 $("#message").hide();
 
-                var softwareName = $("#softwareName").val();
+                var name = $("#name").val();
                 var date = $("#date").val();
                 var subscription = $("#subscription").val();
                 var number = $("#number").val();
@@ -49,7 +49,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                            $("#softwareName").val("");
+                            $("#name").val("");
                             $("#date").val("");
                             $("#subscription").val("");
                             $("#number").val("");
@@ -86,7 +86,7 @@
                     <div class="form-group">
                         <label for="SoftwareName">Software Name</label>
                         <span class="glyphicon glyphicon-pencil"></span>
-                        <input type="text" class="form-control" id="softwareName" placeholder="Software Name" required >
+                        <input type="text" class="form-control" id="name" placeholder="Software Name" required >
                        
                     </div>
                     
