@@ -16,13 +16,13 @@ app.post('/update', function(req, res) {
         
       conn.query(
             'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)',
-        [req.body.number__c.trim(),req.body.softwareName.trim()],
+        [req.body.number__c,req.body.softwareName],
         
             function(err, result) {
                 
                 if (err != null || result.rowCount == 0) {
                     
-                    conn.query('INSERT INTO salesforce.IT_Software_Type__c (number,softwareName , date, subscription) VALUES ($1, $2, $3, $4)',[req.body.number__c.trim(), req.body.softwareName.trim(), req.body.date.trim(), req.body.subscription.trim()],
+                    conn.query('INSERT INTO salesforce.IT_Software_Type__c (number,softwareName , date, subscription) VALUES ($1, $2, $3, $4)',[req.body.number__c, req.body.softwareName, req.body.date, req.body.subscription.],
     
                   function(err, result) {
                     done();
