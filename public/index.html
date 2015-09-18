@@ -32,7 +32,7 @@
                 var subscription = $("#subscription").val();
                 var number = $("#number").val();
 
-                if (softwareName.length == 0 || number.length == 0 ) {
+                if (name.length == 0 || number.length == 0 ) {
                     errorMessage.text("This fields are required.");
                     error.show();
                 }
@@ -41,7 +41,7 @@
                         url: event.target.action,
                         method: event.target.method,
                         data: JSON.stringify({
-                            softwareName: softwareName,
+                            name: name,
                             date: date,
                             subscription: subscription,
                             number: number
@@ -84,7 +84,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="SoftwareName">Software Name</label>
+                        <label for="name">Software Name</label>
                         <span class="glyphicon glyphicon-pencil"></span>
                         <input type="text" class="form-control" id="name" placeholder="Software Name" required >
                        
