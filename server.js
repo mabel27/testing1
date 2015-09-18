@@ -22,7 +22,7 @@ app.post('/update', function(req, res) {
                 
                 if (err != null || result.rowCount == 0) {
                     
-                    conn.query('INSERT INTO salesforce.IT_Software_Type__c (number__c,Name ,date__c, subscription__c) VALUES ($1, $2, $3, $4)',[req.body.number__c, req.body.Name, req.body.date, req.body.subscription],
+                    conn.query('INSERT INTO salesforce.IT_Software_Type__c (number__c,Name ,date__c, subscription__c) VALUES ($1, $2, $3, $4)',[req.body.number__c, req.body.Name, req.body.date__c, req.body.subscription__c],
     
                   function(err, result) {
                     done();
