@@ -27,10 +27,10 @@
 
                 $("#message").hide();
 
-                var lastName = $("#lastName").val();
+                var LastName = $("#LastName").val();
         
               
-                if (lastName.length == 0  ) {
+                if (LastName.length == 0  ) {
                     errorMessage.text("This fields are required.");
                     error.show();
                 }
@@ -39,13 +39,13 @@
                         url: event.target.action,
                         method: event.target.method,
                         data: JSON.stringify({
-                            lastName: lastName,
+                            LastName: LastName,
                     
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                            $("#lastName").val("");
+                            $("#LastName").val("");
                     
                           
                            
@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label for="SoftwareName"> Last Name</label>
                         <span class="glyphicon glyphicon-pencil"></span>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" required >
+                        <input type="text" class="form-control" id="LastName" placeholder="Last Name" required >
                        
                     </div>
                     
