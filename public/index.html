@@ -28,8 +28,8 @@
                 $("#message").hide();
 
                 var name = $("#name").val();
-                var date = $("#date").val();
-                var subscription = $("#subscription").val();
+                var date__c = $("# date__c").val();
+                var subscription__c = $("#subscription__c").val();
                 var number__c = $("#number__c").val();
 
                 if (name.length == 0 || number__c.length == 0 ) {
@@ -42,16 +42,16 @@
                         method: event.target.method,
                         data: JSON.stringify({
                             name: name,
-                            date: date,
-                            subscription: subscription,
+                            date__c:  date__c,
+                            subscription__c: subscription__c,
                             number__c: number__c
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
                             $("#name").val("");
-                            $("#date").val("");
-                            $("#subscription").val("");
+                            $("# date__c").val("");
+                            $("#subscription__c").val("");
                             $("#number__c").val("");
                             $("#messageMessage").text("IT Software License Created");
                             $("#message").show();
@@ -93,15 +93,15 @@
                 <div class="form-group">
                     <label class="col-xs-3 control-label">Purchased Date</label>
                         <div class="input-group input-append date" id="datePicker">
-                            <input id="date" type="text" class="form-control" name="date" />
+                            <input id=" date__c" type="text" class="form-control" name=" date__c" />
                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
 
                     <div class="form-group">
-                        <label for="subscription">Subscription</label>
+                        <label for="subscription__c">Subscription</label>
                         <span class="glyphicon glyphicon-time"></span>
-                        <select class="form-control" id="subscription">
+                        <select class="form-control" id="subscription__c">
                         <option value="0">None</option>
                         <option value="1">Monthly</option>
                         <option value="2">Yearly</option>
