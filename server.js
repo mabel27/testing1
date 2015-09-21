@@ -14,9 +14,8 @@ app.post('/update', function(req, res) {
         
         if (err) console.log(err);
         var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)';
-        alert(update);
+       
         conn.query(update,[req.body.number__c, req.body.name],
-            
             function(err, result) {
                 
                 if (err != null || result.rowCount == 0) {
