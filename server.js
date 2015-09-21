@@ -13,9 +13,9 @@ app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
         if (err) console.log(err);
-        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = ' +"'" + '$1' +"' "+ ' WHERE LOWER(Name) = ' + "'" +'LOWER($2)' + "'"';
+        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)';
         
-        console.log(updte);
+        console.log(update);
        
         conn.query(update,[req.body.number__c, req.body.name],
             function(err, result) {
@@ -23,7 +23,6 @@ app.post('/update', function(req, res) {
                 if (err != null || result.rowCount == 0) {
                     
                     var insert = 'INSERT INTO salesforce.IT_Software_Type__c (number__c, Name , date__c, subscription__c) VALUES ($1, $2, $3, $4)';
-                    
                     console.log(insert);
                     
                     conn.query(insert,[req.body.number__c, req.body.name, req.body.date__c, req.body.subscription__c],
