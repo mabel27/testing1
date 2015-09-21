@@ -13,11 +13,10 @@ app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
         if (err) console.log(err);
-        
-        conn.query(
-            'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)',
-            [req.body.number__c, req.body.name],
-            console.log('values:', $1);
+        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)';
+        console.log(update);
+        conn.query(update,[req.body.number__c, req.body.name],
+            
             function(err, result) {
                 
                 if (err != null || result.rowCount == 0) {
