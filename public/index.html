@@ -30,9 +30,9 @@
                 var name = $("#name").val();
                 var date = $("#date").val();
                 var subscription = $("#subscription").val();
-                var number = $("#number").val();
+                var number__c = $("#number__c").val();
 
-                if (name.length == 0 || number.length == 0 ) {
+                if (name.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");
                     error.show();
                 }
@@ -44,7 +44,7 @@
                             name: name,
                             date: date,
                             subscription: subscription,
-                            number: number
+                            number__c: number__c
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -52,7 +52,7 @@
                             $("#name").val("");
                             $("#date").val("");
                             $("#subscription").val("");
-                            $("#number").val("");
+                            $("#number__c").val("");
                             $("#messageMessage").text("IT Software License Created");
                             $("#message").show();
                         },
@@ -109,9 +109,9 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="number"># of licenses purchased</label>
+                        <label for="number__c"># of licenses purchased</label>
                         <span class="glyphicon glyphicon-list-alt"></span>
-                        <input type="number" class="form-control" id="number" placeholder="Number of licenses" required>
+                        <input type="number" class="form-control" id="number__c" placeholder="Number of licenses" required>
                     </div>
                 </div>
                 <div class="panel-footer">
