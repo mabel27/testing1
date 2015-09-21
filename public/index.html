@@ -42,7 +42,7 @@
                         method: event.target.method,
                         data: JSON.stringify({
                             name: name,
-                            date__c:  date__c,
+                            date__c: date__c,
                             subscription__c: subscription__c,
                             number__c: number__c
                         }),
@@ -50,7 +50,7 @@
                         dataType: "json",
                         success: function(data) {
                             $("#name").val("");
-                            $("# date__c").val("");
+                            $("#date__c").val("");
                             $("#subscription__c").val("");
                             $("#number__c").val("");
                             $("#messageMessage").text("IT Software License Created");
@@ -93,7 +93,7 @@
                 <div class="form-group">
                     <label class="col-xs-3 control-label">Purchased Date</label>
                         <div class="input-group input-append date" id="datePicker">
-                            <input id=" date__c" type="text" class="form-control" name=" date__c" />
+                            <input id="date__c" type="text" class="form-control" name="date__c" />
                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
