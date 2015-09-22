@@ -27,9 +27,7 @@ app.get('/softwareName',function(req,res) {
                
            }
             res.send(JSON.stringify(result.rows[0].json));
-                client.end();
            
-        
             });
         });
 });
