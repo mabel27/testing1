@@ -18,11 +18,8 @@
     </style>
     <script>
         
-        alert("Im here");
-        
-        
         $.get('softwareName',{},function(data){
-        alert(data.type);
+        alert(JSON.parse(data));
    }); 
         
           /*  $('#softwareName').on('change',function(){
