@@ -20,7 +20,7 @@
         
     
             $('#softwareName').on('change',function(){
-              .get('softwareName/'+this.value,function(data){
+              $.get('softwareName/'+this.value,function(data){
 
                 for(var j = 0; j < length; j++)
                 {
