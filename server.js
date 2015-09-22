@@ -20,10 +20,15 @@ app.use(bodyParser.json());
         
       conn.query(select, function(err, result) {
          
-         if (err){
-        console.log('Insert error: ' + err);
+        if (err) { 
+      console.error(err);
+    } else {
+      var names = {};
+      result.rows.forEach(function(row){
+        names[row.Name] = row;
+      });
+      console.log('names :', names);
     }
-
          });
           });
 
