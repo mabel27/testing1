@@ -17,7 +17,6 @@ app.get('/softwareName/:software',function(req,res) {
      if (err) console.error(err);
         
         var select = 'SELECT Name FROM salesforce.IT_Software_Type__c ';
-        console.log(select);
         conn.query(select, function(err, result) {
           
            if (err) {
