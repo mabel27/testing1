@@ -10,14 +10,14 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-app.get('/softwareName/:software',function(req,res) {
+app.get('/softwareName',function(req,res) {
     
      pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
      
      if (err) console.error(err);
         
         var select = 'SELECT Name FROM salesforce.IT_Software_Type__c ';
-        conn.query(select, function(err, result) {
+        conn.query(select,[req.body.name] function(err, result) {
           
            if (err) {
                
