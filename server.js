@@ -10,7 +10,7 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-app.get('/softwareName',function(req,res) {
+app.get('/softwareName/:software',function(req,res) {
     
      pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
      
@@ -25,7 +25,7 @@ app.get('/softwareName',function(req,res) {
                 res.send('error running query');
                
            }
-            res.send(JSON.stringify(result.rows[0].json));
+            res.json(result);
            
             });
         });
