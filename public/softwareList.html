@@ -19,17 +19,17 @@
     <script>
         $(function() {
             
-            $('#name').on('change',function(){
-                $.get('softwareName,function(data){
+            $('#softwareName').on('change',function(){
+                $.get('/softwareName,function(data){
 
                 for(var j = 0; j < length; j++)
                 {
 
-                        $('#name').contents().remove();
+                        $('#softwareName').contents().remove();
                         var newOption = $('<option/>');
                         newOption.attr('text', data[j].text);
                         newOption.attr('value', data[j].value);
-                        $('#name').append(newOption);
+                        $('#softwareName').append(newOption);
                 }
             });
         });
@@ -57,7 +57,7 @@
                <div class="form-group">
                         <label for="subscription__c">Software with a non-0 license </label>
                         <span class="glyphicon glyphicon-list-alt"></span>
-                        <select class="form-control" id="name">
+                        <select class="form-control" id="softwareName">
                         <option value="None">None</option>
                         </select>
                     </div>

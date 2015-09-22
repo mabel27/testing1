@@ -23,7 +23,7 @@ app.get('/softwareName',function(req,res) {
           
            if (err != null || result.rowCount != 0) {
                
-            done();
+            //done();
             res.json(result);
            }
                else {
