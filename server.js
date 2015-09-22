@@ -21,16 +21,14 @@ app.get('/softwareName',function(req,res) {
         
       conn.query(select, function(err, result) {
           
-           if (err != null || result.rowCount != 0) {
+           if (err) {
                
-            //done();
-            res.json(result);
+                res.send('error running query');
+               
            }
-               else {
-                   
-                   res.status(400).json({error: err.message});
-                   
-               }
+            res.send(JSON.stringify(result.rows[0].json));
+                client.end();
+           
         
             });
         });
