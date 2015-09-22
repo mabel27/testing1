@@ -17,23 +17,18 @@
         }
     </style>
     <script>
-        $(function() {
-            
             $('#softwareName').on('change',function(){
                 $.get('softwareName,function(data){
 
                 for(var j = 0; j < length; j++)
                 {
-
                         $('#softwareName').contents().remove();
                         var newOption = $('<option/>');
                         newOption.attr('text', data[j].text);
                         newOption.attr('value', data[j].value);
                         $('#softwareName').append(newOption);
                 }
-            });
-        });
-            
+            });        
     </script> 
 </head>
 <body>
