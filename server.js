@@ -24,7 +24,7 @@ app.get('/softwareName',function(req,res) {
                 res.send('error running query');
                
            }
-            res.json(result);
+            res.send(result);
            
             });
         });
