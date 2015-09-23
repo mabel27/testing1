@@ -38,7 +38,9 @@
                 
                 }
             alert("pass");
-            console.log(data[0]); 
+            $.each(json, function(idx, obj) {
+	           alert(obj.name);
+});
                 
             }
         });
