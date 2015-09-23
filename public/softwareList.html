@@ -17,10 +17,23 @@
         }
     </style>
     <script>
-         $(function() {
-    alert(result);
-        
-        
+        $(function() {
+   
+            $.ajax({ // ajax call starts
+            url: '/softwareName', 
+            type:"GET",
+            dataType: 'json', // Choosing a JSON datatype
+            contentType: "application/json; charset=utf-8",
+           
+            success: function(data) {
+            alert("pass");
+            console.log(data); 
+                
+            }
+        });
+            return false;
+});
+    
          /*
         $('#softwareName').on('change',function(){
             $('.software').hide()
@@ -42,7 +55,7 @@
             });  
 });   
           */  
-              });
+             
     </script> 
 </head>
 <body>
@@ -70,6 +83,8 @@
                         <option value="None">None</option>
                         </select>
                     </div>
+                    
+                    <div id="test">  </div>
                     
                     <div class="form-group">
                         <label for="number"># of Licenses</label>
