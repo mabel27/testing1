@@ -29,8 +29,9 @@
 
                 var info = data.rows;
                 data.rows.forEach(function(row){
-                $('#softwareName').append('<option>' + row.name +'</option>');
-                console.log(data);                       
+                $('#softwareName').append('<option value="'+row.sfid+'">' + row.name +'</option>');
+                console.log(data);  
+                    
           });
                   
             }
