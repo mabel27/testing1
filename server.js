@@ -12,6 +12,10 @@ app.use(bodyParser.json());
 
 app.get('/softwareName',function(req,res) {
     
+    
+    res.json({user: 'mabel'});
+    /*
+    
      pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
      
      if (err) console.error(err);
@@ -24,14 +28,15 @@ app.get('/softwareName',function(req,res) {
                 res.send('error running query');
                
            }
-            res.json(result);
+            //res.json(result);
+            
            
             });
         });
+
+
+   */
 });
-
-   
-
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
