@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 app.get('/softwareName',function(req,res) {
     
     
-    res.json({user: 'mabel'});
-    /*
+  //  res.json({user: 'mabel'});
+
     
      pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
      
@@ -26,16 +26,14 @@ app.get('/softwareName',function(req,res) {
            if (err) {
                
                 res.send('error running query');
-               
+        
            }
-            //res.json(result);
+            res.json(result);
             
            
             });
         });
 
-
-   */
 });
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
