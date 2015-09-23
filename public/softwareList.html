@@ -26,6 +26,16 @@
             contentType: "application/json; charset=utf-8",
            
             success: function(data) {
+                
+                for(var i = 0; i<length; j++)
+                {
+                    $('#softwareName').contents().remove();
+                    var newOption = $('<option/>');
+                        newOption.attr('text', data[i].text);
+                        newOption.attr('value', data[i].value);
+                        $('#softwareName').append(newOption);
+                
+                }
             alert("pass");
             console.log(data); 
                 
@@ -46,7 +56,7 @@
 
                 for(var j = 0; j < length; j++)
                 {
-                        $('#softwareName').contents().remove();
+                        
                         var newOption = $('<option/>');
                         newOption.attr('text', data[j].text);
                         newOption.attr('value', data[j].value);
@@ -80,7 +90,7 @@
                         <label for="subscription__c">Software with a non-0 license </label>
                         <span class="glyphicon glyphicon-list-alt"></span>
                         <select class="software form-control" id="softwareName">
-                        <option value="None">None</option>
+                        <option ></option>
                         </select>
                     </div>
                     
