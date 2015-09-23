@@ -41,18 +41,25 @@ app.post('/updateSoftware', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
         if (err) console.log(err);
-        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE sfid = $2';
         
-       
+        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE sfid = $2';
         conn.query(update,[req.body.number__c, req.body.sfid],
-            function(err, result) {
                 
-                if (err != null || result.rowCount == 0) {
-
+                
+               function(err, result) {
+                        
                     done();
-                    res.json(result);
-            }
-        });
+                        
+                    if (err) {
+                        
+                        res.status(400).json({error: err.message});
+                    }
+                    else {
+                        // this will still cause jquery to display 'Record updated!'
+                        // eventhough it was inserted
+                        res.json(result);
+                    }
+                  });
     });
 });
 
