@@ -26,25 +26,13 @@
             contentType: "application/json; charset=utf-8",
            
             success: function(data) {
-               
-            alert("pass");
-                
+
                 var info = data.rows;
-                
-                 data.rows.forEach(function(row){
-                     
-            $('#softwareName').append('<option>' + row.name +'</option>');
-                                      
-                                      
-                                      
-                                      
-            alert(row.name);
-                     console.log(info);
+                data.rows.forEach(function(row){
+                $('#softwareName').append('<option>' + row.name +'</option>');
+                console.log(data);                       
           });
-                
-                console.log(info);
-           
-                
+                  
             }
         });
             return false;
@@ -96,7 +84,6 @@
                         <label for="subscription__c">Software with a non-0 license </label>
                         <span class="glyphicon glyphicon-list-alt"></span>
                         <select class="software form-control" id="softwareName">
-                        <option ></option>
                         </select>
                     </div>
                     
