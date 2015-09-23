@@ -17,14 +17,14 @@ app.get('/softwareName',function(req,res) {
      if (err) console.error(err);
         
         var select = 'SELECT Name FROM salesforce.IT_Software_Type__c ';
-        conn.query(select,[req.body.name], function(err, result) {
+        conn.query(select, function(err, result) {
           
            if (err) {
                
                 res.send('error running query');
                
            }
-            res.send(result);
+            res.json(result);
            
             });
         });
