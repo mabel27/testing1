@@ -29,7 +29,7 @@
 
                 var info = data.rows;
                 data.rows.forEach(function(row){
-                $('#softwareName').append('<option value="'+row.sfid+'">' + row.name +'</option>');
+                $('#softwareName').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');
                 console.log(data);  
                     
           });
@@ -37,29 +37,52 @@
             }
         });
             return false;
+            
+            $("#updateSoftware").submit(function(event) {
+                event.preventDefault();
+
+                var errorMessage = $("#errorMessage");
+                var error = $("#error");
+                error.hide();
+
+                $("#message").hide();
+
+                var sfid = $("#sfid").val();
+                var number__c = $("#number__c").val();
+
+                if (sfid.length == 0 || number__c.length == 0 ) {
+                    errorMessage.text("This fields are required.");
+                    error.show();
+                }
+                else {
+                    $.ajax({
+                        url: event.target.action,
+                        method: event.target.method,
+                        data: JSON.stringify({
+                            sfid: sfid,
+                            number__c: number__c
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(data) {
+                            $("#sfid").val("");
+                            $("#number__c").val("");
+                            $("#messageMessage").text("IT Software License Created");
+                            $("#message").show();
+                        },
+                        error: function(err) {
+                            errorMessage.text(err.responseJSON.error);
+                            error.show();
+                        }
+                    })
+                }
+            });
+            
+            
+            
+            
 });
     
-         /*
-        $('#softwareName').on('change',function(){
-            $('.software').hide()
-  $('#'+this.value).show()
-});
-        
-   
-            $('#softwareName').on('change',function(){
-              $.get('softwareName/'+this.value,function(data){
-
-                for(var j = 0; j < length; j++)
-                {
-                        
-                        var newOption = $('<option/>');
-                        newOption.attr('text', data[j].text);
-                        newOption.attr('value', data[j].value);
-                        $('#softwareName').append(newOption);
-                }
-            });  
-});   
-          */  
              
     </script> 
 </head>
@@ -75,7 +98,7 @@
     <div class="container">
         
     <div class="row">
-        <form id="refresh" action="/refresh" method="GET" style="width: 600px">
+        <form id="updateSoftware" action="/updateSoftware" method="POST" style="width: 600px">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Update the Software List</h3>
@@ -84,16 +107,12 @@
                <div class="form-group">
                         <label for="subscription__c">Software with a non-0 license </label>
                         <span class="glyphicon glyphicon-list-alt"></span>
-                        <select class="software form-control" id="softwareName">
-                        </select>
+                        <select class="software form-control" id="softwareName"></select>
                     </div>
-                    
-                    <div id="test">  </div>
-                    
                     <div class="form-group">
                         <label for="number"># of Licenses</label>
                         <span class="glyphicon glyphicon-pencil"></span>
-                        <input type="text" class="form-control" id="LastName" placeholder="# of Licenses" required >
+                        <input type="text" class="form-control" id="number__c" placeholder="# of Licenses" required >
                        
                     </div>
                     

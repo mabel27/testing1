@@ -35,6 +35,28 @@ app.get('/softwareName',function(req,res) {
         });
 
 });
+
+
+app.post('/updateSoftware', function(req, res) {
+    pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        
+        if (err) console.log(err);
+        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE sfid = $2';
+        
+       
+        conn.query(update,[req.body.number__c, req.body.sfid],
+            function(err, result) {
+                
+                if (err != null || result.rowCount == 0) {
+
+                    done();
+                    res.json(result);
+            }
+        });
+    });
+});
+
+
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
