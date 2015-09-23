@@ -26,20 +26,10 @@
             contentType: "application/json; charset=utf-8",
            
             success: function(data) {
-                
-                for(var i = 0; i<length; j++)
-                {
-                    alert("Inside");
-                    $('#softwareName').contents().remove();
-                    var newOption = $('<option/>');
-                        newOption.attr('text', data[i].text);
-                        newOption.attr('value', data[i].value);
-                        $('#softwareName').append(newOption);
-                
-                }
+               
             alert("pass");
             console.log(data);
-});
+           
                 
             }
         });
