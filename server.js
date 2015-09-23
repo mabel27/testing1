@@ -20,12 +20,12 @@ app.get('/softwareName',function(req,res) {
      
      if (err) console.error(err);
         
-        var select = 'SELECT Name FROM salesforce.IT_Software_Type__c WHERE number__c == 0 ';
+        var select = 'SELECT Name FROM salesforce.IT_Software_Type__c WHERE number__c = 0 ';
         conn.query(select, function(err, result) {
           
            if (err) {
                
-                res.send('error running query');
+                res.send('select');
         
            }
             res.json(result);
