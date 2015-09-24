@@ -27,14 +27,15 @@
                 var info = data.rows;
                 data.rows.forEach(function(row){
                 $('#softwareName').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');
-
-                 });    
-                
+                console.log(data);  
+                    
+          });
+                  
             }
         });
             //return false;
             
-            $("#newSoftwareLicense").submit(function(event) {
+            $("#updateSoftware").submit(function(event) {
                 event.preventDefault();
 
                 var errorMessage = $("#errorMessage");
@@ -45,7 +46,11 @@
 
                 var sfid = $("#sfid").val();
                 
+                
+                
                 var number__c = $("#number__c").val();
+                
+               
 
                 if (sfid.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");
@@ -73,9 +78,10 @@
                         }
                     })
                 }
-            });         
+            });       
 });
-
+    
+             
     </script> 
 </head>
 <body>
@@ -91,7 +97,7 @@
         <div class="row">
             
             
-        <form id="newSoftwareLicense" action="/update" method="POST" style="width: 600px">
+        <form id="updateSoftware" action="/update" method="POST" style="width: 600px">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Edit  IT Software Type</h3>
