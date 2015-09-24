@@ -33,10 +33,6 @@ app.get('/listing',function(req,res) {
 });
 
 
-
-
-
-
 app.get('/softwareName',function(req,res) {
     
     
@@ -95,35 +91,24 @@ app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
         if (err) console.log(err);
-        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)';
         
-        console.log(update);
-       
-        conn.query(update,[req.body.number__c, req.body.name],
-            function(err, result) {
+        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE sfid = $2';
+        conn.query(update,[req.body.number__c, req.body.sfid],
                 
-                if (err != null || result.rowCount == 0) {
-                    
-                    var insert = 'INSERT INTO salesforce.IT_Software_Type__c (number__c, Name , date__c, subscription__c) VALUES ($1, $2, $3, $4)';
-                    
-                    
-                    conn.query(insert,[req.body.number__c, req.body.name, req.body.date__c, req.body.subscription__c],
-    
-                  function(err, result) {
+
+        function(err, result) {
                         
-                    done();
+            done();
                         
-                    if (err) {
+            if (err) {
                         
-                        res.status(400).json({error: err.message});
-                    }
-                    else {
-                        // this will still cause jquery to display 'Record updated!'
-                        // eventhough it was inserted
-                        res.json(result);
-                    }
-                  });
+                res.status(400).json({error: err.message});
+            }
+             else {
+                    res.json(result);
                 }
+                  });
+            
                 else {
                     done();
                     res.json(result);
