@@ -6,11 +6,13 @@ var app = express();
 
 
 app.set('port', process.env.PORT || 5000);
-
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
 
+/***********************************************************************************************
+GET-/Listing: Find the fields from the custom object and display it in the form (index.html)
+************************************************************************************************/
 app.get('/listing',function(req,res) {
     
      pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
@@ -29,16 +31,15 @@ app.get('/listing',function(req,res) {
             
             });
         });
-
 });
 
 
-app.get('/softwareName',function(req,res) {
-    
-    
-  //  res.json({user: 'mabel'});
 
-    
+/******************************************************************************************************
+GET-/softwareName: Display the Software name that does not have licenses
+******************************************************************************************************/
+app.get('/softwareName',function(req,res) {
+
      pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
      
      if (err) console.error(err);
@@ -52,41 +53,15 @@ app.get('/softwareName',function(req,res) {
         
            }
             res.json(result);
-            
-           
+         
             });
         });
-
 });
 
 
-app.post('/updateSoftware', function(req, res) {
-    pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
-        
-        if (err) console.log(err);
-        
-        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE sfid = $2';
-        conn.query(update,[req.body.number__c, req.body.sfid],
-                
-                
-               function(err, result) {
-                        
-                    done();
-                        
-                    if (err) {
-                        
-                        res.status(400).json({error: err.message});
-                    }
-                    else {
-                        // this will still cause jquery to display 'Record updated!'
-                        // eventhough it was inserted
-                        res.json(result);
-                    }
-                  });
-    });
-});
-
-
+/***********************************************************************************************************
+POST-/updateSoftware: Receive the form from the client side and update the record in the database/salesforce
+************************************************************************************************************/
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
@@ -110,6 +85,10 @@ app.post('/update', function(req, res) {
     });
 });
 
+
+/*********************************************************************************************************
+POST-/create: Receive the form from the client side and create a new record in the database/salesforce
+**********************************************************************************************************/
 app.post('/create', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
@@ -117,16 +96,14 @@ app.post('/create', function(req, res) {
         
         var select = 'SELECT Name FROM salesforce.IT_software_Type__c WHERE LOWER(Name) = LOWER($2)';
         
-        //var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)';
-        
         conn.query(select,function(err, result) {
                 
-                if (err != null || result.rowCount == 0) {
+        if (err != null || result.rowCount == 0) {
                     
-                    var insert = 'INSERT INTO salesforce.IT_Software_Type__c (number__c, Name , date__c, subscription__c) VALUES ($1, $2, $3, $4)';
+            var insert = 'INSERT INTO salesforce.IT_Software_Type__c (number__c, Name , date__c, subscription__c) VALUES ($1, $2, $3, $4)';
                     
                     
-                    conn.query(insert,[req.body.number__c, req.body.name, req.body.date__c, req.body.subscription__c],
+            conn.query(insert,[req.body.number__c, req.body.name, req.body.date__c, req.body.subscription__c],
     
                   function(err, result) {
                         
@@ -154,7 +131,9 @@ app.post('/create', function(req, res) {
 
 
 
-
+/****************************************************************************************************************
+POST-/new: Create a new contact record in the database/salesforce (Testing functionality)
+*****************************************************************************************************************/
 app.post('/new', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         

@@ -47,8 +47,6 @@
                         success: function(data) {
                             $("#LastName").val("");
                     
-                          
-                           
                         },
                         error: function(err) {
                             errorMessage.text(err.responseJSON.error);
@@ -83,7 +81,6 @@
                         <label for="SoftwareName"> Last Name</label>
                         <span class="glyphicon glyphicon-pencil"></span>
                         <input type="text" class="form-control" id="LastName" placeholder="Last Name" required >
-                       
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Save</button>

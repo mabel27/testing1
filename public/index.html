@@ -33,7 +33,6 @@
                   
             }
         });
-            //return false;
             
             $("#updateSoftware").submit(function(event) {
                 event.preventDefault();
@@ -45,12 +44,8 @@
                 $("#message").hide();
 
                 var sfid = $("#sfid").val();
-                
-                
-                
+            
                 var number__c = $("#number__c").val();
-                
-               
 
                 if (sfid.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");

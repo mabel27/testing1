@@ -36,7 +36,6 @@
                   
             }
         });
-            //return false;
             
             $("#updateSoftware").submit(function(event) {
                 event.preventDefault();
@@ -48,13 +47,8 @@
                 $("#message").hide();
 
                 var sfid = $("#sfid").val();
-                
-                
-                
                 var number__c = $("#number__c").val();
                 
-               
-
                 if (sfid.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");
                     error.show();
@@ -83,10 +77,13 @@
                 }
             });       
 });
-    
-             
+           
     </script> 
+    
+    
 </head>
+    
+    
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -114,9 +111,7 @@
                         <label for="number"># of Licenses</label>
                         <span class="glyphicon glyphicon-pencil"></span>
                         <input type="text" class="form-control" id="number__c" placeholder="# of Licenses" required >
-                       
                     </div>
-                    
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>
