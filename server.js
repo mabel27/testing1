@@ -17,7 +17,7 @@ app.get('/listing',function(req,res) {
      
      if (err) console.error(err);
         
-        var select = 'SELECT sfid, Name, date__c,subscription__c, number__c FROM salesforce.IT_Software_Type__c ';
+        var select = 'SELECT sfid, Name, date__c,subscription__c, number__c FROM salesforce.IT_Software_Type__c ORDER BY Name ASC ';
         conn.query(select, function(err, result) {
           
            if (err) {
@@ -43,7 +43,7 @@ app.get('/softwareName',function(req,res) {
      
      if (err) console.error(err);
         
-        var select = 'SELECT sfid, Name FROM salesforce.IT_Software_Type__c WHERE number__c = 0 ';
+        var select = 'SELECT sfid, Name FROM salesforce.IT_Software_Type__c WHERE number__c = 0 ORDER BY Name ASC ';
         conn.query(select, function(err, result) {
           
            if (err) {
