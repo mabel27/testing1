@@ -94,14 +94,15 @@ app.post('/create', function(req, res) {
         
         if (err) console.log(err);
         
-        var select = 'SELECT sfid FROM salesforce.IT_software_Type__c WHERE Name = $2';
+       // var update = 'SELECT sfid FROM salesforce.IT_software_Type__c WHERE Name = $2';
         
-        conn.query(select,function(err, result) {
+         var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, date__c = $3, subscription__c =$4  WHERE LOWER(Name) = LOWER($2)';
+        
+        conn.query(update,function(err, result) {
                 
-        if (err != null || result.rowCount > 0) {
+        if (err != null || result.rowCount == 0) {
                     
             var insert = 'INSERT INTO salesforce.IT_Software_Type__c (number__c, Name , date__c, subscription__c) VALUES ($1, $2, $3, $4)';
-                    
                     
             conn.query(insert,[req.body.number__c, req.body.name, req.body.date__c, req.body.subscription__c],
     
@@ -121,6 +122,8 @@ app.post('/create', function(req, res) {
                   });
                 }
                 else {
+                    
+                    
                     done();
                     res.json(result);
                 }
@@ -128,7 +131,6 @@ app.post('/create', function(req, res) {
         );
     });
 });
-
 
 
 /****************************************************************************************************************
