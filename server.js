@@ -94,30 +94,21 @@ app.post('/update', function(req, res) {
         
         var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE sfid = $2';
         conn.query(update,[req.body.number__c, req.body.sfid],
-                
-
-        function(err, result) {
-                        
-            done();
-                        
-            if (err) {
-                        
-                res.status(400).json({error: err.message});
-            }
-             else {
-                    res.json(result);
+       function(err, result) {
+                done();
+                if (err != null || result.rowCount == 0) {
+                     console.error(err);
+                    res.status(400).json({error: 'Error inserting'});
                 }
-                  });
-            
                 else {
-                    done();
                     res.json(result);
                 }
             }
+            
         );
+            
     });
 });
-
 app.post('/new', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
