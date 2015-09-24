@@ -27,8 +27,17 @@
                 var info = data.rows;
                 data.rows.forEach(function(row){
                 $('#softwareName').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');
+                if(row.sfid == this.getField("sfid").value)
+                {
+                    $('#date__c').datepicker("setDate", row.date__c);
+                
+                
+                
+                }
+                    
+                
                  });    
-                $('#date__c').datepicker("setDate", row.date__c);
+                
                 $('#subscription__c').append('<option>' + row.subscription__c +'</option>');
                 $('#number__c').append('<input type="number" class="form-control" required>'+row.number__c);
                 console.log(data);  
