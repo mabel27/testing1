@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit IT Software Type</title>
+    <title>New IT Software Type</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
@@ -15,30 +15,7 @@
     
     <script>
         $(function() {
-   
-            $.ajax({ // ajax call starts
-            url: '/listing', 
-            type:"GET",
-            dataType: 'json', // Choosing a JSON datatype
-            contentType: "application/json; charset=utf-8",
-           
-            success: function(data) {
-
-                var info = data.rows;
-                data.rows.forEach(function(row){
-                $('#softwareName').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');
-                $('#date__c').datepicker("setDate", row.date__c);
-                $('#subscription__c').append('<option>' + row.subscription__c +'</option>');
-                $('#number__c').append('<input type="number" class="form-control" required>'+row.number__c);
-                console.log(data);  
-                    
-          });
-                  
-            }
-        });
-            return false;
-            
-            $("#updateSoftware").submit(function(event) {
+            $("#newSoftwareLicense").submit(function(event) {
                 event.preventDefault();
 
                 var errorMessage = $("#errorMessage");
@@ -47,10 +24,12 @@
 
                 $("#message").hide();
 
-                var sfid = $("#sfid").val();
+                var name = $("#name").val();
+                var date__c = $("#date__c").val();
+                var subscription__c = $("#subscription__c").val();
                 var number__c = $("#number__c").val();
 
-                if (sfid.length == 0 || number__c.length == 0 ) {
+                if (name.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");
                     error.show();
                 }
@@ -59,15 +38,19 @@
                         url: event.target.action,
                         method: event.target.method,
                         data: JSON.stringify({
-                            sfid: sfid,
+                            name: name,
+                            date__c: date__c,
+                            subscription__c: subscription__c,
                             number__c: number__c
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                            $("#sfid").val("");
+                            $("#name").val("");
+                            $("#date__c").val("");
+                            $("#subscription__c").val("");
                             $("#number__c").val("");
-                            $("#messageMessage").text("IT Software License Updated");
+                            $("#messageMessage").text("IT Software License Created");
                             $("#message").show();
                         },
                         error: function(err) {
@@ -76,8 +59,8 @@
                         }
                     })
                 }
-            });         
-});
+            });
+        });
 
     </script> 
 </head>
@@ -85,7 +68,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Edit IT Software Type</a>
+                <a class="navbar-brand" href="/">New IT Software Type</a>
             </div>
         </div>
     </nav>
@@ -97,14 +80,14 @@
         <form id="newSoftwareLicense" action="/update" method="POST" style="width: 600px">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Edit  IT Software Type</h3>
+                    <h3 class="panel-title">Create a new IT Software Type</h3>
                 </div>
-                
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="softwareName">Software Name </label>
-                        <span class="glyphicon glyphicon-list-alt"></span>
-                        <select class="software form-control" id="softwareName"></select>
+                        <label for="name">Software Name</label>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <input type="text" class="form-control" id="name" placeholder="Software Name" required >
+                       
                     </div>
                     
                 <div class="form-group">
@@ -128,10 +111,9 @@
                     <div class="form-group">
                         <label for="number__c"># of licenses purchased</label>
                         <span class="glyphicon glyphicon-list-alt"></span>
-                        
+                        <input type="number" class="form-control" id="number__c" placeholder="Number of licenses" required>
                     </div>
                 </div>
-                
                 <div class="panel-footer">
                     <div id="message" class="alert alert-info" role="alert" style="display: none;">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
