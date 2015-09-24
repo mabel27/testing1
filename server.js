@@ -98,7 +98,7 @@ app.post('/create', function(req, res) {
         
         conn.query(select,function(err, result) {
                 
-        if (err != null || result.rowCount == 0) {
+        if (err != null || result.rowCount > 0) {
                     
             var insert = 'INSERT INTO salesforce.IT_Software_Type__c (number__c, Name , date__c, subscription__c) VALUES ($1, $2, $3, $4)';
                     
