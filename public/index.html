@@ -27,9 +27,9 @@
                 var info = data.rows;
                 data.rows.forEach(function(row){
                 $('#softwareName').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');
-                function(elem){
-    var value = elem.value;
-alert(value);
+              var e = document.getElementById("sfid");
+              var strUser = e.options[e.selectedIndex].value;
+                    alert(strUser);
 }
                     
                     
