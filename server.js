@@ -94,7 +94,7 @@ app.post('/create', function(req, res) {
         
         if (err) console.log(err);
         
-        var select = 'SELECT sfid FROM salesforce.IT_software_Type__c WHERE LOWER(Name) = LOWER($2)';
+        var select = 'SELECT sfid FROM salesforce.IT_software_Type__c WHERE Name = $2';
         
         conn.query(select,function(err, result) {
                 
