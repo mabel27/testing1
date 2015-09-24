@@ -109,6 +109,52 @@ app.post('/update', function(req, res) {
             
     });
 });
+
+app.post('/create', function(req, res) {
+    pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        
+        if (err) console.log(err);
+        
+        var select = 'SELECT Name FROM salesforce.IT_software_Type__c WHERE LOWER(Name) = LOWER($2)';
+        
+        //var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE LOWER(Name) = LOWER($2)';
+        
+        conn.query(select,function(err, result) {
+                
+                if (err != null || result.rowCount == 0) {
+                    
+                    var insert = 'INSERT INTO salesforce.IT_Software_Type__c (number__c, Name , date__c, subscription__c) VALUES ($1, $2, $3, $4)';
+                    
+                    
+                    conn.query(insert,[req.body.number__c, req.body.name, req.body.date__c, req.body.subscription__c],
+    
+                  function(err, result) {
+                        
+                    done();
+                        
+                    if (err) {
+                        
+                        res.status(400).json({error: err.message});
+                    }
+                    else {
+                        // this will still cause jquery to display 'Record updated!'
+                        // eventhough it was inserted
+                        res.json(result);
+                    }
+                  });
+                }
+                else {
+                    done();
+                    res.json(result);
+                }
+            }
+        );
+    });
+});
+
+
+
+
 app.post('/new', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         
