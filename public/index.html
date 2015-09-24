@@ -27,8 +27,13 @@
                 var info = data.rows;
                 data.rows.forEach(function(row){
                 $('#softwareName').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');
+                function(elem){
+    var value = elem.value;
+alert(value);
+}
                     
-                    alert($(this).attr('#sfid'));
+                    
+                    
                 if(row.sfid == this.get("sfid").value)
                 {
                     $('#date__c').datepicker("setDate", row.date__c);
