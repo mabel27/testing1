@@ -1,14 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var pg = require('pg');
-
 var app = express();
+
+
 
 
 app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
-
 
 /***********************************************************************************************
 GET-/Listing: Find the fields from the custom object and display it in the form (index.html)
@@ -67,7 +67,7 @@ app.post('/update', function(req, res) {
         
         if (err) console.log(err);
         
-        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1  WHERE sfid = $2';
+        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, ExternalId__c = $2   WHERE sfid = $2';
         conn.query(update,[req.body.number__c, req.body.sfid],
        function(err, result) {
                 done();
@@ -82,7 +82,7 @@ app.post('/update', function(req, res) {
             
         );
         
-          var insert = 'INSERT INTO salesforce.IT_Software__c (number__c) VALUES ($1)';
+          var insert = 'INSERT INTO salesforce.IT_Software__c (IT_Software_Type__c__ExternalId__c,number__c) VALUES ($1,$2)';
                     
             conn.query(insert,[req.body.number__c],function(err, result) {
                 done();
