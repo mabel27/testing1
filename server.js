@@ -68,7 +68,7 @@ app.post('/update', function(req, res) {
         if (err) console.log(err);
         
         var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, ExternalId__c = $2   WHERE sfid = $2';
-        conn.query(update,[req.body.number__c, req.body.sfid, req.body.ExternalId__c],
+        conn.query(update,[req.body.number__c, req.body.sfid],
        function(err, result) {
                 done();
                 if (err != null || result.rowCount == 0) {
