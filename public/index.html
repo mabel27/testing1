@@ -46,6 +46,8 @@
                 var sfid = $("#sfid").val();
             
                 var number__c = $("#number__c").val();
+                
+                var ExternalId__c = $("#sfid").val();
 
                 if (sfid.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");
@@ -57,7 +59,8 @@
                         method: event.target.method,
                         data: JSON.stringify({
                             sfid: sfid,
-                            number__c: number__c
+                            number__c: number__c,
+                            ExternalId__c: ExternalId__c
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
