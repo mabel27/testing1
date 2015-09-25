@@ -96,7 +96,6 @@ app.post('/update', function(req, res) {
             }
             
         );    
-        );    
             
     });
 });
