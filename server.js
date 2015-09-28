@@ -89,7 +89,7 @@ app.post('/update', function(req, res) {
           
            if (err) {
                
-                res.send(id__c);
+                res.send(alert(id__c));
         
            }
             res.json(result);
