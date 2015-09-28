@@ -82,7 +82,22 @@ app.post('/update', function(req, res) {
             
         );
         
-          var insert = 'INSERT INTO salesforce.IT_Software__c (id__c,number__c) VALUES ($1)';
+        var id__c = 'SELECT externalid__c FROM salesforce.IT_Software_Type__c WHERE externalid__c = $2 ';
+        
+                conn.query(id__c, function(err, result) {
+          
+           if (err) {
+               
+                res.send(err);
+        
+           }
+            res.json(result);
+            
+            });
+        
+        
+        
+          var insert = 'INSERT INTO salesforce.IT_Software__c (id__c,number__c) VALUES (id__c,$1)';
                     
             conn.query(insert,[req.body.id__c,req.body.number__c],function(err, result) {
                 done();
