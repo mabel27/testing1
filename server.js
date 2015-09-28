@@ -6,7 +6,14 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var Auth0Strategy = require('passport-auth0');
+var jwt = require('express-jwt');
 //var strategy = require('./setup-passport');
+
+var jwtCheck = jwt({
+  secret: new Buffer('Ec2PMN0mCY9gxJgU5Amp2gTsuncpjcC7RUAnNj3U4EoFZIBuVAx2btqXNaFM94V4', 'base64'),
+  audience: 'Sx3B8FGsHtAiyXryaprzACvhDLRnnN5s'
+});
+
 
 var strategy = new Auth0Strategy({
     domain:       process.env.AUTH0_DOMAIN,
@@ -44,7 +51,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+app.use('/test09152015.herokuapp.com/softwareList.html', jwtCheck);
 
 // Auth0 callback handler
 app.get('/callback',
@@ -53,7 +60,7 @@ app.get('/callback',
     if (!req.user) {
       throw new Error('user null');
     }
-    res.redirect("/user");
+    res.redirect("/index.html");
   });
 
 
