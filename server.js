@@ -67,8 +67,8 @@ app.post('/update', function(req, res) {
         
         if (err) console.log(err);
         
-        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, ExternalId__c = $2   WHERE sfid = $3';
-        conn.query(update,[req.body.number__c, req.body.sfid, req.body.ExternalId__c],
+        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, externalid__c = $2   WHERE sfid = $3';
+        conn.query(update,[req.body.number__c, req.body.sfid, req.body.externalid__c],
        function(err, result) {
                 done();
                 if (err != null || result.rowCount == 0) {
@@ -82,9 +82,9 @@ app.post('/update', function(req, res) {
             
         );
         
-          var insert = 'INSERT INTO salesforce.IT_Software__c (number__c) VALUES ($1)';
+          var insert = 'INSERT INTO salesforce.IT_Software__c (id__c,number__c) VALUES ($4, $1)';
                     
-            conn.query(insert,[req.body.number__c],function(err, result) {
+            conn.query(insert,[ req.body.id__c, req.body.number__c],function(err, result) {
                 done();
                 if (err != null || result.rowCount == 0) {
                      console.error(err);

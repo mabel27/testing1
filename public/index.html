@@ -47,8 +47,11 @@
             
                 var number__c = $("#number__c").val();
                 
-                var ExternalId__c = $("#sfid").val();
-
+                var externalid__c = $("#sfid").val();
+                
+                var id__c = $("#sfid").val();
+                
+                
                 if (sfid.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");
                     error.show();
@@ -60,14 +63,16 @@
                         data: JSON.stringify({
                             sfid: sfid,
                             number__c: number__c,
-                            ExternalId__c: ExternalId__c
+                            externalid__c: externalid__c,
+                            id__c: id__c
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
                             $("#sfid").val("");
                             $("#number__c").val("");
-                            $("#ExternalId__c").val("");
+                            $("#externalid__c").val("");
+                            $("#id__c").val("");
                             $("#messageMessage").text("IT Software License Updated");
                             $("#message").show();
                         },
