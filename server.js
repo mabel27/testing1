@@ -67,7 +67,7 @@ app.post('/update', function(req, res) {
         
         if (err) console.log(err);
         
-        var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, externalid__c = $2   WHERE sfid = $3';
+     /*   var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, externalid__c = $2   WHERE sfid = $3';
         conn.query(update,[req.body.number__c, req.body.sfid, req.body.externalid__c],
        function(err, result) {
                 done();
@@ -81,10 +81,10 @@ app.post('/update', function(req, res) {
             }
             
         );
-        
+        */
         
         //IT_Software_Type__c__ExternalId__c
-          var insert = 'INSERT INTO salesforce.IT_Software__c (,number__c, sfid) VALUES ($1,$3)';
+          var insert = 'INSERT INTO salesforce.IT_Software__c (number__c, sfid) VALUES ($1,$3)';
                     
             conn.query(insert,[req.body.number__c,req.body.sfid],function(err, result) {
                 done();
