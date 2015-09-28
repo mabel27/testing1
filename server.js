@@ -85,7 +85,7 @@ app.post('/update', function(req, res) {
         
         var id__c = 'SELECT sfid FROM salesforce.IT_Software__c WHERE sfid = $3';
         
-                conn.query(select, function(err, result) {
+                conn.query(id__c, function(err, result) {
           
            if (err) {
                
