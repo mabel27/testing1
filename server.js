@@ -83,18 +83,7 @@ app.post('/update', function(req, res) {
         );
         */
         
-        var id__c = 'SELECT sfid FROM salesforce.IT_Software__c WHERE sfid = $3';
-        
-                conn.query(id__c, function(err, result) {
-          
-           if (err) {
-               
-                res.send(alert(id__c));
-        
-           }
-            res.json(result);
-         
-            });
+       
         
         //IT_Software_Type__c__ExternalId__c
           var insert = 'INSERT INTO salesforce.IT_Software__c (Id__c,number__c) VALUES ($3,$1)';
@@ -102,7 +91,7 @@ app.post('/update', function(req, res) {
             conn.query(insert,[req.body.number__c,req.body.Id__c],function(err, result) {
                 done();
                 if (err != null || result.rowCount == 0) {
-                     console.error(err);
+                    console.error(err);
                     res.status(400).json({error: err});
                 }
                 else {
