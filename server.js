@@ -97,7 +97,7 @@ app.post('/update', function(req, res) {
             });
         
         //IT_Software_Type__c__ExternalId__c
-          var insert = 'INSERT INTO salesforce.IT_Software__c (Id__c,number__c) VALUES (id__c,$1)';
+          var insert = 'INSERT INTO salesforce.IT_Software__c (Id__c,number__c) VALUES ($3,$1)';
                     
             conn.query(insert,[req.body.number__c,req.body.Id__c],function(err, result) {
                 done();
