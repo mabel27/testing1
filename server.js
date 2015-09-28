@@ -84,9 +84,9 @@ app.post('/update', function(req, res) {
         
         
         //IT_Software_Type__c__ExternalId__c
-          var insert = 'INSERT INTO salesforce.IT_Software__c (id__c,number__c, sfid) VALUES ($4,$1,$3)';
+          var insert = 'INSERT INTO salesforce.IT_Software__c (,number__c, sfid) VALUES ($1,$3)';
                     
-            conn.query(insert,[req.body.id__c,req.body.number__c,req.body.sfid],function(err, result) {
+            conn.query(insert,[req.body.number__c,req.body.sfid],function(err, result) {
                 done();
                 if (err != null || result.rowCount == 0) {
                      console.error(err);
