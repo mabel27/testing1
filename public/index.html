@@ -49,7 +49,7 @@
                 
                 var externalid__c = $("#sfid").val();
                 
-                var id__c = $("#sfid").val();
+                var Id__c = $("#sfid").val();
                 
                 
                 if (sfid.length == 0 || number__c.length == 0 ) {
@@ -64,7 +64,7 @@
                             sfid: sfid,
                             number__c: number__c,
                             externalid__c: externalid__c,
-                            id__c: id__c
+                            Id__c: Id__c
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -72,7 +72,7 @@
                             $("#sfid").val("");
                             $("#number__c").val("");
                             $("#externalid__c").val("");
-                            $("#id__c").val("");
+                            $("#Id__c").val("");
                             $("#messageMessage").text("IT Software License Updated");
                             $("#message").show();
                         },
