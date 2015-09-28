@@ -2,13 +2,66 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var pg = require('pg');
 var app = express();
+var passport = require('passport');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var Auth0Strategy = require('passport-auth0');
+//var strategy = require('./setup-passport');
 
+var strategy = new Auth0Strategy({
+    domain:       process.env.AUTH0_DOMAIN,
+    clientID:     process.env.AUTH0_CLIENT_ID,
+    clientSecret: process.env.AUTH0_CLIENT_SECRET,
+    callbackURL:  process.env.AUTH0_CALLBACK_URL || 'https://test09152015.herokuapp.com/callback'
+  }, function(accessToken, refreshToken, extraParams, profile, done) {
+    // accessToken is the token to call Auth0 API (not needed in the most cases)
+    // extraParams.id_token has the JSON Web Token
+    // profile has all the information from the user
+    return done(null, profile);
+  });
 
+passport.use(strategy);
+
+// This is not a best practice, but we want to keep things simple for now
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+module.exports = strategy;
 
 
 app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
+
+app.use(cookieParser());
+app.use(session({ secret: 'shhhhhhhhh' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+// Auth0 callback handler
+app.get('/callback',
+  passport.authenticate('auth0', { failureRedirect: '/test09152015.herokuapp.com' }),
+  function(req, res) {
+    if (!req.user) {
+      throw new Error('user null');
+    }
+    res.redirect("/user");
+  });
+
+
+app.get('/user', function (req, res) {
+  res.render('user', {
+    user: req.user
+  });
+});
 
 /***********************************************************************************************
 GET-/Listing: Find the fields from the custom object and display it in the form (index.html)
