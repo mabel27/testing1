@@ -27,9 +27,7 @@
 
                 var info = data.rows;
                 data.rows.forEach(function(row){
-                $('#sfid').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');
-                console.log(data);  
-                    
+                $('#sfid').append('<option id="sfid" value="'+row.sfid+'">' + row.name +'</option>');     
           });
                   
             }
@@ -52,7 +50,7 @@
                 
                 var Id__c = $("#sfid").val();
                 
-                alert(externalid__c);
+               
                 
                 if (sfid.length == 0 || number__c.length == 0 ) {
                     errorMessage.text("This fields are required.");
