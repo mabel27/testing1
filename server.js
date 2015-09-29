@@ -64,7 +64,7 @@ app.post('/update', function(req, res) {
         
         if (err) console.log(err);
         
-     /*   var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, externalid__c = $2   WHERE sfid = $3';
+     var update = 'UPDATE salesforce.IT_Software_Type__c SET number__c = $1, externalid__c = $2   WHERE sfid = $3';
         conn.query(update,[req.body.number__c, req.body.sfid, req.body.externalid__c],
        function(err, result) {
                 done();
@@ -78,7 +78,6 @@ app.post('/update', function(req, res) {
             }
             
         );
-        */
         
         //IT_Software_Type__c__ExternalId__c
         //IT_Software_Type__r__ExternalId__c
