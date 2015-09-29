@@ -10,7 +10,11 @@ var pg = require('pg');
 //var conn = new jsforce.Connection();
 
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
+
+
+app.use(express.static(__dirname + '/public'));
+
 app.use(bodyParser.json());
 app.use(methodOverride());
 
