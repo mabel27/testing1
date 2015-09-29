@@ -1,12 +1,33 @@
 var express = require('express');
+var http = require('http');
+var path = require('path');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 var pg = require('pg');
 var app = express();
 
+//var jsforce = require('jsforce');
+//var conn = new jsforce.Connection();
 
-app.set('port', process.env.PORT || 5000);
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(methodOverride());
+
+/***********************************************************************************************
+Authetication 
+************************************************************************************************/
+
+app.all('/proxy', function(req,res){
+
+    var url = req.header('SalesforceProxy-Endpoint');
+    request({ url: url, method: req.method, json: req.body, headers: {'Authorization': req.header('X-Authorization')} }).pipe(res);
+
+
+});
+
+app.set('port', process.env.PORT || 5000);
+
 
 /***********************************************************************************************
 GET-/Listing: Find the fields from the custom object and display it in the form (index.html)
