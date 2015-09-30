@@ -16,10 +16,14 @@ var pg = require('pg');
 
 //app.use(express.static('public'));
 
-
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.json());
+app.get('/appid', function(req, res) {
+    res.send({appId: appId});
+});
+
+
 //app.use(methodOverride());
 
 /***********************************************************************************************
