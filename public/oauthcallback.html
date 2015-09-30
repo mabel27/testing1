@@ -2,17 +2,8 @@
 <body>
 <script>
 
-if (window.location.hash) {
-    var message = decodeURIComponent(window.location.hash.substr(1)),
-        params = message.split('&'),
-        response = {};
-    params.forEach(function (param) {
-        var splitter = param.split('=');
-        response[splitter[0]] = splitter[1];
-    });
-    window.opener.oauthCallback(response);
+  window.opener.force.oauthCallback(window.location.href);
     window.close();
-}
 
 </script>
 </body>
