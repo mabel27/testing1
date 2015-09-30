@@ -1,6 +1,7 @@
 <html>
 <body>
 <script>
+
 if (window.location.hash) {
     var message = decodeURIComponent(window.location.hash.substr(1)),
         params = message.split('&'),
@@ -12,6 +13,7 @@ if (window.location.hash) {
     window.opener.oauthCallback(response);
     window.close();
 }
+
 </script>
 </body>
 </html>
