@@ -13,7 +13,7 @@ var pg = require('pg');
 //app.use(express.static('public'));
 
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.use(bodyParser.json());
 app.use(methodOverride());
