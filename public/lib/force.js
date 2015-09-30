@@ -3,7 +3,7 @@
  * Author: Christophe Coenraets @ccoenraets
  * Version: 0.4
  */
-var force = (function () {
+var force = (function ()   {
 
     "use strict";
 
