@@ -7,7 +7,7 @@ var express = require('express'),
     
     app = express();
 
-    appId = process.env.APP_ID;
+    //appId = process.env.APP_ID;
 
 var pg = require('pg');
 //var jsforce = require('jsforce');
@@ -18,6 +18,8 @@ var pg = require('pg');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+
+/*
 
 app.get('/appid', function(req, res) {
     res.send({appId: appId});
@@ -30,6 +32,7 @@ app.get('/appid', function(req, res) {
 Authetication 
 ************************************************************************************************/
 
+/*
 app.all('*', function(req,res, next){
 
      var targetURL = req.header('Target-URL');
@@ -46,6 +49,7 @@ app.all('*', function(req,res, next){
 
 });
 
+*/
 app.set('port', process.env.PORT || 5000);
 
 
