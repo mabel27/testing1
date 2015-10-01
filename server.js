@@ -11,7 +11,7 @@ var express = require('express');
     audience: 'iQAcXIeB1W5KOinFwCWSp7mxEqEvyHwZ'
     });
 
-app.use('/index.html', jwtCheck);
+app.use('/new.html', jwtCheck);
 
 var pg = require('pg');
 //var jsforce = require('jsforce');
