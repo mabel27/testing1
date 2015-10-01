@@ -1,8 +1,8 @@
-var express = require('express'),
-    http = require('http'),
-    path = require('path'),
-    request = require('request'),
-    bodyParser = require('body-parser'),
+var express = require('express');
+    //http = require('http')
+   // path = require('path'),
+   // request = require('request'),
+    bodyParser = require('body-parser');
    //methodOverride = require('method-override'),
     
     app = express();
@@ -14,10 +14,10 @@ var pg = require('pg');
 //var conn = new jsforce.Connection();
 
 
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 /*
 
