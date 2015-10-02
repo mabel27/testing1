@@ -28,7 +28,7 @@ var force = (function ()   {
         baseURL = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + context,
 
     // if page URL is http://localhost:3000/myapp/index.html, oauthCallbackURL is http://localhost:3000/myapp/oauthcallback.html
-        oauthCallbackURL = 'https://test09152015.herokuapp.com/oauthcallback.html',
+        oauthCallbackURL = 'http://localhost:5000/oauthcallback.html',
 
     // Only required when using REST APIs in an app hosted on your own server to avoid cross domain policy issues
         proxyURL = baseURL,

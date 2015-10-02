@@ -1,29 +1,23 @@
-var express = require('express');
-   
-    bodyParser = require('body-parser');
-   
+var express = require('express'),
+    http = require('http'),
+    path = require('path'),
+    request = require('request'),
+    bodyParser = require('body-parser'),
+   //methodOverride = require('method-override'),
+    
     app = express();
 
-    var jwt = require('express-jwt');
-
-    var jwtCheck = jwt({
-    secret: new Buffer('OFYcKZU1hMGbhEfsDQtPh-pIVdWlr0vV8GinaLbQVBu-28e4VuFaoTlW4gavU2IZ', 'base64'),
-    audience: 'iQAcXIeB1W5KOinFwCWSp7mxEqEvyHwZ'
-    });
-
-app.use('/new.html', jwtCheck);
+    appId = process.env.APP_ID;
 
 var pg = require('pg');
 //var jsforce = require('jsforce');
 //var conn = new jsforce.Connection();
 
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 app.use(bodyParser.json());
-//app.use(express.static(__dirname + '/public'));
-
-/*
+app.use(express.static(__dirname + '/public'));
 
 app.get('/appid', function(req, res) {
     res.send({appId: appId});
@@ -36,7 +30,6 @@ app.get('/appid', function(req, res) {
 Authetication 
 ************************************************************************************************/
 
-/*
 app.all('*', function(req,res, next){
 
      var targetURL = req.header('Target-URL');
@@ -53,9 +46,7 @@ app.all('*', function(req,res, next){
 
 });
 
-*/
 app.set('port', process.env.PORT || 5000);
-
 
 /***********************************************************************************************
 GET-/Listing: Find the fields from the custom object and display it in the form (index.html)
